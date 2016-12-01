@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import collections
 
 class BaseController:
 
@@ -30,8 +31,8 @@ class BaseController:
 
         # indicates if the internal neural network is recurrent
         # by the existence of recurrent_update and get_state methods
-        has_recurrent_update = callable(getattr(self, 'update_state', None))
-        has_get_state = callable(getattr(self, 'get_state', None))
+        has_recurrent_update = isinstance(getattr(self, 'update_state', None), collections.Callable)
+        has_get_state = isinstance(getattr(self, 'get_state', None), collections.Callable)
         self.has_recurrent_nn =  has_recurrent_update and has_get_state
 
         # the actual size of the neural network input after flatenning and

@@ -1,5 +1,5 @@
 import tensorflow as tf
-from memory import Memory
+from .memory import Memory
 import os
 
 class DNC:
